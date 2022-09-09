@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -28,9 +29,13 @@ public class Enterprise {
 
     private String address;
 
-    private String users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterprise")
+    private List<Employee> employees;
 
-    private String transactions;
+
+    @OneToMany
+    @JoinColumn(name = "transactions_id")
+    private List<Transaction> transactions;
 
     private Date createdAt;
 

@@ -24,7 +24,7 @@ public class EmployeeService {
 
     public List<Employee> seeEmployee(){
         List<Employee> employees = new ArrayList<Employee>();
-        employees.addAll(employeeRepository.findAll());
+        employeeRepository.findAll().forEach(employee -> employees.add(employee));
         return employees;
     }
 

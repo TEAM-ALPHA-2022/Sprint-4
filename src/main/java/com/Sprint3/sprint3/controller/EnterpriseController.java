@@ -26,8 +26,7 @@ public class EnterpriseController {
 
     @GetMapping("/enterprises/{id}")
     public Enterprise searchEnterprise(@PathVariable long id){
-        Enterprise enterpriseFound = enterpriseService.seeEntrepiseId(id);
-        return enterpriseFound;
+        return enterpriseService.seeEntrepiseId(id);
     }
 
     @DeleteMapping("/enterprises/{id}")

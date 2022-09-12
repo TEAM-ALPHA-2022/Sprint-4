@@ -15,8 +15,7 @@ import java.util.List;
 @Table(name = "Enterprise")
 public class Enterprise {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
@@ -28,17 +27,5 @@ public class Enterprise {
     private String phone;
 
     private String address;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterprise")
-    private List<Employee> employees;
-
-
-    @OneToMany
-    @JoinColumn(name = "transactions_id")
-    private List<Transaction> transactions;
-
-    private Date createdAt;
-
-    private Date updatedAt;
 
 }

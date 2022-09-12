@@ -1,6 +1,7 @@
 package com.Sprint3.sprint3.entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,26 +15,20 @@ import java.util.Date;
 @Table(name = "Transaction")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 60)
     private String concept;
 
-    @Column(nullable = false)
     private float amount;
 
     @ManyToOne
-    @JoinColumn(name = "empleado_id_employee")
+    @JoinColumn(name = "Employee_id")
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id_enterprise")
+    @JoinColumn(name = "Enterprise_id")
     private Enterprise enterprise;
 
-    private Date createdAt;
-
-    private Date updatedAt;
 
 }

@@ -1,6 +1,8 @@
 package com.Sprint3.sprint3.service;
 
+import com.Sprint3.sprint3.entities.Enterprise;
 import com.Sprint3.sprint3.entities.Transaction;
+import com.Sprint3.sprint3.repository.EnterpriseRepository;
 import com.Sprint3.sprint3.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TransactionService {
+public class TransactionService extends EnterpriseService{
 
     @Autowired
     TransactionRepository transactionRepository;
 
+    @Autowired
+    EnterpriseRepository enterpriseRepository;
+
     public void CreateAndUpdateTransaction(Transaction transaction){
-        //Guardar
         transactionRepository.save(transaction);
     }
 
@@ -51,8 +55,11 @@ public class TransactionService {
             campo.setAccessible(true);
             ReflectionUtils.setField(campo, transactionFound, valor);
         });
-
         transactionRepository.save(transactionFound);
+    }
+
+    public ArrayList<Transaction> getByTransactionbyEntrepise(Long id){
+        return transactionRepository.findByEnterprise(id);
     }
 
 }

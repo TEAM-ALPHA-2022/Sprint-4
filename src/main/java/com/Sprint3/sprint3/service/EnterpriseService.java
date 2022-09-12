@@ -25,8 +25,8 @@ public class EnterpriseService {
     }
 
     public List<Enterprise> seeEnterprises(){
-        List<Enterprise> enterprises = new ArrayList<Enterprise>();
-        enterprises.addAll(enterpriseRepository.findAll());
+        List<Enterprise> enterprises = new ArrayList<>();
+        enterpriseRepository.findAll().forEach(enterprise -> enterprises.add(enterprise));
         return enterprises;
     }
 

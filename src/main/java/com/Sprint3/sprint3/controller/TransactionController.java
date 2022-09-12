@@ -5,7 +5,7 @@ import com.Sprint3.sprint3.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
@@ -13,28 +13,22 @@ public class TransactionController {
 
     @Autowired
     TransactionService transactionService;
-
-    @GetMapping("/transaction")
-    private List<Transaction> seeTransactions(){
-        return transactionService.seeTransaction();
+    @GetMapping("/enterprises/{id}/movements")
+    public ArrayList<Transaction> searchTransaction(@PathVariable long id){
+        return transactionService.getByTransactionbyEntrepise(id);
     }
 
-    @PostMapping("/transaction")
+    @PostMapping("/enterprises/{id}/movements")
     private void createTransaction(@RequestBody Transaction transaction){
         transactionService.CreateAndUpdateTransaction(transaction);
     }
 
-    @GetMapping("/transaction/{id}")
-    public Transaction searchTransaction(@PathVariable long id){
-        return transactionService.seeTransactionId(id);
-    }
-
-    @DeleteMapping("/transaction/{id}")
+    @DeleteMapping("/enterprises/{id}/movements")
     private void deleteTransaction(@PathVariable("id") Long id){
         transactionService.deleteTransaction(id);
     }
 
-    @PatchMapping("/transaction/{id}")
+    @PatchMapping("/movements/{id}")
     public void updateTransaction(@PathVariable long id, @RequestBody Map<Object, Object> dataToUpdate){
         transactionService.updateTransaction(id,dataToUpdate);
     }

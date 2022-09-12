@@ -16,29 +16,23 @@ import java.util.List;
 @Table(name = "Employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idEmployee")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     private String profile;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "enum_role_name_id")
+    @JoinColumn(name = "enum_role")
     private Enum_RoleName enum_roleName;
 
     @ManyToOne
-    @JoinColumn(name = "enterprise_id")
+    @JoinColumn(name = "idEnterprise")
     private Enterprise enterprise;
 
-    @OneToMany
-    @JoinColumn(name = "transactions_id")
-    private List<Transaction> transactions;
 
-    private Date createdAtEmpleado;
-
-    private Date updatedAtEmpleado;
 
 }

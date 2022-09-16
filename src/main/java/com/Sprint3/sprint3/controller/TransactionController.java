@@ -28,7 +28,7 @@ public class TransactionController {
         transactionService.deleteTransaction(id);
     }
 
-    @PatchMapping("/movements/{id}")
+    @PatchMapping("/enterprises/{id}/movements")
     public void updateTransaction(@PathVariable long id, @RequestBody Map<Object, Object> dataToUpdate){
         transactionService.updateTransaction(id,dataToUpdate);
     }
